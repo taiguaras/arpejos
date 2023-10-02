@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto de Acordes</title>
+    <link rel="icon" type="image/x-icon" href="guitar.png">
+
+    <style>
+        section{
+            padding: 3%;
+        }
+        section.braco{
+            margin: 4%;
+        }
+        .corda{
+            height: 50px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .casa{
+            border: solid 1px #8c8c8c;
+            border-radius: 2px;
+            height: 50px;
+            width: 8%;
+            background-color: #FFF;
+            display: flex;
+            justify-content: center;
+        }
+
+        .corda-1 .casa{
+            border-bottom: 0px;
+            border-left: 0px;
+            border-right: 0px;
+        }
+
+        .casa span{
+            align-self: center;
+            padding: 4px;
+            border-radius: 3px;
+            background-color: #D0D0D0;
+            border: solid 1px #000;
+            position: relative;
+            top: -27px;
+        }
+
+        .casa-0{
+            border-top: 0px;
+            border-bottom: 0px;
+            border-left: 0px;
+        }
+
+        .guide0::after{
+            content:"0";
+            height: 5px;
+            width: 5px;
+            position: relative;
+            bottom: -30px;
+            left: -18%;
+            color:red
+        }
+
+        .guide3::after{
+            content:"•3";
+            height: 5px;
+            width: 5px;
+            position: relative;
+            bottom: -30px;
+            left: -18%;
+        }
+        .guide5::after{
+            content:"•5";
+            height: 5px;
+            width: 5px;
+            position: relative;
+            bottom: -30px;
+            left: -18%;
+            color:red;
+        }
+        .guide7::after{
+            content:"•7";
+            height: 5px;
+            width: 5px;
+            position: relative;
+            bottom: -30px;
+            left: -18%;
+        }
+
+        .guide9::after{
+            content:"•9";
+            height: 5px;
+            width: 5px;
+            position: relative;
+            bottom: -30px;
+            left: -18%;
+        }
+
+        .guide10::after{
+            content:"10";
+            height: 5px;
+            width: 5px;
+            position: relative;
+            bottom: -30px;
+            left: -18%;
+            color:red;
+        }
+
+        .guide12::after{
+            content:"12";
+            height: 5px;
+            width: 5px;
+            position: relative;
+            bottom: -30px;
+            left: -18%;
+            color:red;
+        }
+
+        .highlighted {
+            /* background-color: chartreuse; */
+            border-top: solid 3px chartreuse;
+        }
+
+        span.weight {
+            display: inline;
+            padding: 2px;
+            position: relative;
+            top: -12px;
+            background: red;
+            color: white;
+        }
+
+        span.weight2 {
+            display: inline;
+            padding: 2px;
+            position: relative;
+            top: -12px;
+            background: chartreuse;
+            color: black;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <section>
+        <h1>Programa de Acordes</h1>
+        <!-- <P>Selectione uma nota:</P>
+        <select id="options">
+            <option value="A">A</option>
+            <option value="Asharp.Bbemol">A# Bb</option>
+
+            <option value="B">B</option>
+
+            <option value="C">C</option>
+            <option value="Csharp.Dbemol">C# Db</option> 
+
+            <option value="D">D</option>
+            <option value="Dsharp.Ebemol">D# Eb</option>
+
+            <option value="E">E</option>
+
+            <option value="F">F</option>
+            <option value="Fsharp.Gbemol">F# Gb</option>
+            
+            <option value="G">G</option>
+            <option value="Gsharp.Abemol">G# Ab</option>
+
+        </select> -->
+
+        <!-- <select id="colors">
+            <option value="red">red</option>
+            <option value="purple">purple</option>
+            <option value="chocolate">chocolate</option>
+            <option value="yellow">yellow</option>
+            <option value="cornflowerblue">cornflowerblue</option>
+            <option value="chartreuse">chartreuse</option>
+            <option value="brown">brown</option>
+            <option value="cyan">cyan</option>
+            <option value="burlywood">burlywood</option>
+            <option value="cadetblue">cadetblue</option>
+            <option value="aquamarine">aquamarine</option>
+            <option value="blueviolet">blueviolet</option>
+        </select>
+
+        <p>Controls</p>
+        <button id="A">A</button>
+        <button id="AsharpBbemol">A# Bb</button>
+        <button id="B">B</button>
+        <button id="C">C</button>
+        <button id="CsharpDbemol">C# Db</button>
+        <button id="D">D</button>
+        <button id="DsharpEbemol">D# Eb</button>
+        <button id="E">E</button>
+        <button id="F">F</button>
+        <button id="FsharpGbemol">F# Gb</button>
+        <button id="G">G</button>
+        <button id="GsharpAbemol">G# Ab</button>
+        <div style="margin-top: 15px">
+            <button id="paint" class="paint-btn">Paint</button>
+            <button id="clear" class="clear-btn">Clear</button>
+        </div> -->
+    </section>
+
+    <section class="board">
+        <p class="list">Empty</p>        
+        <button class="clear">Clear</button>
+    </section>
+
+<section class="braco">
+    <div class="corda corda-6 E">
+        <div class="casa casa-0"><span class="E">E<span class="weight">0</span></div>
+        <div class="casa casa-1"><span class="F">F<span class="weight">1</span></span></div>
+        <div class="casa casa-2"><span class="Fsharp Gbemol">F# Gb<span class="weight">1.5</span></span></div>
+        <div class="casa casa-3"><span class="G">G<span class="weight">2</span></span></div>
+        <div class="casa casa-4"><span class="Gsharp Abemol">G# Ab<span class="weight">2.5</span></span></div>
+        <div class="casa casa-5"><span class="A">A <span class="weight">3</span></span></div>
+        <div class="casa casa-6"><span class="Asharp Bbemol">A# Bb<span class="weight">3.5</span></span></div>
+        <div class="casa casa-7"><span class="B">B <span class="weight">4</span></span></div>
+        <div class="casa casa-8"><span class="C">C <span class="weight">5</span></span></div>
+        <div class="casa casa-9"><span class="Csharp Dbemol">C# Db <span class="weight">5.5</span></span></div>
+        <div class="casa casa-10"><span class="D">D <span class="weight">6</span></span></div>
+        <div class="casa casa-11"><span class="Dsharp Ebemol">D# Eb <span class="weight">6.5</span></span></div>
+        <div class="casa casa-12"><span class="E">E <span class="weight">7</span></span></div>
+    </div>
+    <div class="corda corda-5 A">
+        <div class="casa casa-0"><span class="A">A <span class="weight2">0</span></div>
+        <div class="casa casa-1"><span class="Asharp Bbemol">A# Bb <span class="weight2">0.5</span></span></div>
+        <div class="casa casa-2"><span class="B">B <span class="weight2">0.5</span></span></div>
+        <div class="casa casa-3"><span class="C">C <span class="weight2">1</span></span></div>
+        <div class="casa casa-4"><span class="Csharp Dbemol">C# Db <span class="weight2">0.5</span></span></div>
+        <div class="casa casa-5"><span class="D">D <span class="weight2">0.5</span></span></div>
+        <div class="casa casa-6"><span class="Dsharp Ebemol">D# Eb <span class="weight2">0.5</span></span></div>
+        <div class="casa casa-7"><span class="E">E <span class="weight2">0.5</span></span></div>
+        <div class="casa casa-8"><span class="F">F <span class="weight2">1</span></span></div>
+        <div class="casa casa-9"><span class="Fsharp Gbemol">F# Gb <span class="weight2">0.5</span></span></div>
+        <div class="casa casa-10"><span class="G">G <span class="weight2">0.5</span></span></div>
+        <div class="casa casa-11"><span class="Gsharp Abemol">G# Ab <span class="weight2">0.5</span></span></div>
+        <div class="casa casa-12"><span class="A">A <span class="weight2">0.5</span></span></div>
+    </div>
+    <div class="corda corda-4 D">
+        <div class="casa casa-0"><span class="D">D</span></div>
+        <div class="casa casa-1"><span class="Dsharp Ebemol">D# Eb</span></div>
+        <div class="casa casa-2"><span class="E">E</span></div>
+        <div class="casa casa-3"><span class="F">F</span></div>
+        <div class="casa casa-4"><span class="Fsharp Gbemol">F# Gb</span></div>
+        <div class="casa casa-5"><span class="G">G</span></div>
+        <div class="casa casa-6"><span class="Gsharp Abemol">G# Ab</span></div>
+        <div class="casa casa-7"><span class="A">A</span></div>
+        <div class="casa casa-8"><span class="Asharp Bbemol">A# Bb</span></div>
+        <div class="casa casa-9"><span class="B">B</span></div>
+        <div class="casa casa-10"><span class="C">C</span></div>
+        <div class="casa casa-11"><span class="Csharp Dbemol">C# Db</span></div>
+        <div class="casa casa-12"><span class="D">D</span></div>
+    </div>
+    <div class="corda corda-3 G">
+        <div class="casa casa-0"><span class="G">G</span></div>
+        <div class="casa casa-1"><span class="Gsharp Abemol">G# Ab</span></div>
+        <div class="casa casa-2"><span class="A">A</span></div>
+        <div class="casa casa-3"><span class="Asharp Bbemol">A# Bb</span></div>
+        <div class="casa casa-4"><span class="B">B</span></div>
+        <div class="casa casa-5"><span class="C">C</span></div>
+        <div class="casa casa-6"><span class="Csharp Dbemol">C# Db</span></div>
+        <div class="casa casa-7"><span class="D">D</span></div>
+        <div class="casa casa-8"><span class="Dsharp Ebemol">D# Eb</span></div>
+        <div class="casa casa-9"><span class="E">E</span></div>
+        <div class="casa casa-10"><span class="F">F</span></div>
+        <div class="casa casa-11"><span class="Fsharp Gbemol">F# Gb</span></div>
+        <div class="casa casa-12"><span class="G">G</span></div>
+    </div>
+    <div class="corda corda-2 B">
+        <div class="casa casa-0"><span class="B">B</span></div>
+        <div class="casa casa-1"><span class="C">C</span></div>
+        <div class="casa casa-2"><span class="Csharp Dbemol">C# Db</span></div>
+        <div class="casa casa-3"><span class="D">D</span></div>
+        <div class="casa casa-4"><span class="Dsharp Ebemol">D# Eb</span></div>
+        <div class="casa casa-5"><span class="E">E</span></div>
+        <div class="casa casa-6"><span class="F">F</span></div>
+        <div class="casa casa-7"><span class="Fsharp Gbemol">F# Gb</span></div>
+        <div class="casa casa-8"><span class="G">G</span></div>
+        <div class="casa casa-9"><span class="Gsharp Abemol">G# Ab</span></div>
+        <div class="casa casa-10"><span class="A">A</span></div>
+        <div class="casa casa-11"><span class="Asharp Bbemol">A# Bb</span></div>
+        <div class="casa casa-12"><span class="B">B</span></div>
+    </div>
+    <div class="corda corda-1 E">
+        <div class="casa casa-0 guide0"><span class="E">E</span></div>
+        <div class="casa casa-1"><span class="F">F</span></div>
+        <div class="casa casa-2"><span class="Fsharp Gbemol">F# Gb</span></div>
+        <div class="casa casa-3 guide3"><span class="G">G</span></div>
+        <div class="casa casa-4"><span class="Gsharp Abemol">G# Ab</span></div>
+        <div class="casa casa-5 guide5"><span class="A">A</span></div>
+        <div class="casa casa-6"><span class="Asharp Bbemol">A# Bb</span></div>
+        <div class="casa casa-7 guide7"><span class="B">B</span></div>
+        <div class="casa casa-8"><span class="C">C</span></div>
+        <div class="casa casa-9 guide9"><span class="Csharp Dbemol">C# Db</span></div>
+        <div class="casa casa-10 guide10"><span class="D">D</span></div>
+        <div class="casa casa-11"><span class="Dsharp Ebemol">D# Eb</span></div>
+        <div class="casa casa-12 guide12"><span class="E">E</span></div>
+    </div>
+
+</section>
+
+
+    
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script>
+    console.log("Rodou");
+    // $( ".C" ).css( "background-color", "yellow" );
+    // $( ".E" ).css( "background-color", "yellow" );
+    // $( ".G" ).css( "background-color", "yellow" );
+
+    //Posicao 1
+    // $( ".casa-1" ).css( "border-left", "solid 2px green" );
+
+    // $( ".corda-6 > .casa-1" ).css( "border-top", "solid 2px green" );    
+    // $( ".corda-6 > .casa-2" ).css( "border-top", "solid 2px green" );
+    // $( ".corda-6 > .casa-3" ).css( "border-top", "solid 2px green" );
+    // $( ".corda-6 > .casa-4" ).css( "border-top", "solid 2px green" );
+    // $( ".casa-4" ).css( "border-right", "solid 2px green" );
+
+    // //Posicao 2
+    // $( ".casa-5" ).css( "border-left", "solid 2px green" );
+    // $( ".corda-6 > .casa-5" ).css( "border-top", "solid 2px blue" );    
+    // $( ".corda-6 > .casa-6" ).css( "border-top", "solid 2px blue" );
+    // $( ".corda-6 > .casa-7" ).css( "border-top", "solid 2px blue" );
+    // $( ".corda-6 > .casa-8" ).css( "border-top", "solid 2px blue" );
+    // $( ".casa-8" ).css( "border-right", "solid 2px blue" );
+
+    // //Posicao 3
+    // $( ".casa-9" ).css( "border-left", "solid 2px green" );
+    // $( ".corda-6 > .casa-9" ).css( "border-top", "solid 2px #cf304b" );    
+    // $( ".corda-6 > .casa-10" ).css( "border-top", "solid 2px #cf304b" );
+    // $( ".corda-6 > .casa-11" ).css( "border-top", "solid 2px #cf304b" );
+    // $( ".corda-6 > .casa-12" ).css( "border-top", "solid 2px #cf304b" );
+    // $( ".casa-12" ).css( "border-right", "solid 2px #cf304b" );
+    let board = {};
+
+    function addtoBoard(teste) {
+        var fratName = teste.children().attr('class');
+        console.log("add to board", teste);
+        //var span = teste.children().toggleClass("boarded");
+        //console.log("add to board2 span", span );
+
+
+        // var selectedFrats = $( ".highlighted" ).children();
+        console.log("selected frats", fratName );
+
+        return fratName;
+        // $( ".boarded" ).css( "border-left", "solid 2px green" );
+    }
+
+    //Paint button
+    //Get both selects and apply to casas
+    $('#paint').on('click', function() {
+        var selectedOption = $( "#options" ).find(":selected").val();
+        var selectedColor = $( "#colors" ).find(":selected").val();
+        console.log( selectedOption, selectedColor );
+        $( "."+selectedOption ).css( "background-color", selectedColor );
+    });
+
+
+    $('.casa').on('click', function() {
+        // var selectedOption = $( "#options" ).find(":selected").val();
+        // var selectedColor = $( "#colors" ).find(":selected").val();
+        console.log("casa onclick", this );
+
+        // $teste = this;
+
+        // $teste.css( "background-color", "purple" );
+        //pinta a linha
+        $(this).toggleClass('highlighted');
+
+        //falta colocar o nome da linha no array
+        //span.
+        var aqui = $(this);
+
+
+        board = board+" "+ addtoBoard( aqui);
+        
+
+        $(".list").html(board);
+
+        console.log("hehe", board);
+
+        // $( "."+selectedOption ).css( "background-color", selectedColor );
+    });
+
+    $('.clear').on('click', function() {
+        board = {};
+        $(".list").html(board);
+
+    });
+
+    //$('select').on('change', function() {
+        //console.log( this.value );
+        // var seletor = this.value;
+        // console.log( seletor );
+        // $( "#" + seletor ).css( "background-color", "yellow" );
+    //});
+
+    //Painel dos btns
+
+    $('#A').on('click', function() {
+        $( ".A" ).css( "background-color", "red" );
+    });
+
+    $('#AsharpBbemol').on('click', function() {
+        $( ".Asharp.Bbemol" ).css( "background-color", "purple" );
+    });
+
+    $('#B').on('click', function() {
+        $( ".B" ).css( "background-color", "chocolate" );
+    });
+
+    $('#C').on('click', function() {
+        $( ".C" ).css( "background-color", "yellow" );
+    });
+
+    $('#CsharpDbemol').on('click', function() {
+        $( ".Csharp.Dbemol" ).css( "background-color", "cornflowerblue" );
+    });
+
+    $('#D').on('click', function() {
+        $( ".D" ).css( "background-color", "chartreuse" );
+    });
+
+    $('#DsharpEbemol').on('click', function() {
+        $( ".Dsharp.Ebemol" ).css( "background-color", "brown" );
+    });
+
+    $('#E').on('click', function() {
+        $( ".E" ).css( "background-color", "cyan" );
+    });
+
+    $('#F').on('click', function() {
+        $( ".F" ).css( "background-color", "burlywood" );
+    });
+
+    $('#FsharpGbemol').on('click', function() {
+        $( ".Fsharp.Gbemol" ).css( "background-color", "cadetblue" );
+    });
+    
+    $('#G').on('click', function() {
+        $( ".G" ).css( "background-color", "aquamarine" );
+    });
+    
+    $('#GsharpAbemol').on('click', function() {
+        $( ".Gsharp.Abemol" ).css( "background-color", "blueviolet" );
+    });
+
+    $('#clear').on('click', function() {        
+        $( '.casa > span' ).css( "background-color", "#D0D0D0" );
+        console.log("Cleared", this.value );
+    });
+
+</script>
+</body>
+</html>
